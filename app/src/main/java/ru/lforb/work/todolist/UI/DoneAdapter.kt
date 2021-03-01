@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.lforb.work.todolist.Model.ToDo
@@ -14,7 +15,7 @@ class DoneAdapter(val list:MutableList<ToDo>, val listener: DoneFragment):Recycl
     class ViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
         val title = itemView.findViewById<TextView>(R.id.textTitle)
         val description = itemView.findViewById<TextView>(R.id.textDescription)
-        val delete = itemView.findViewById<ImageButton>(R.id.btnDelete)
+        val delete = itemView.findViewById<ImageView>(R.id.btnDelete)
          val addToDo = itemView.findViewById<CheckBox>(R.id.checkboxInDone)
 
     }
