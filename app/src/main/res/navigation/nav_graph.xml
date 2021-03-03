@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/startFragment">
+    app:startDestination="@id/signFragment">
 
     <fragment
         android:id="@+id/startFragment"
@@ -28,5 +28,14 @@
         <action
             android:id="@+id/action_addTaskFragment_to_toDoFragment"
             app:destination="@id/toDoFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signFragment"
+        android:name="ru.lforb.work.todolist.UI.SignFragment"
+        android:label="Sign in"
+        tools:layout="@layout/fragment_sign" >
+        <action
+            android:id="@+id/action_signFragment_to_startFragment"
+            app:destination="@id/startFragment" />
     </fragment>
 </navigation>

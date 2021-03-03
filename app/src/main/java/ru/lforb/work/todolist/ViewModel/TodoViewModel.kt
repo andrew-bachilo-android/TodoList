@@ -4,51 +4,26 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
 import ru.lforb.work.todolist.Model.ToDo
-import ru.lforb.work.todolist.Repository.Repository
 
-class TodoViewModel(val repository: Repository) : ViewModel(){
-    val scope = CoroutineScope(Dispatchers.IO)
+class TodoViewModel() : ViewModel(){
 
     var tasks = mutableListOf<ToDo>()
+
+    var user = ""
+
+    val userLive: MutableLiveData<String> by lazy {
+        MutableLiveData<String>()
+    }
 
     var tasksDone = mutableListOf<ToDo>()
 
     val taskLive: MutableLiveData<MutableList<ToDo>> by lazy {
         MutableLiveData<MutableList<ToDo>>()
     }
-
-    fun insertTask(newToDo: ToDo){
-        scope.launch {
-            repository.insertTask(newToDo)
-            tasks.add(newToDo)
-        }
+    val addLive: MutableLiveData<ToDo> by lazy {
+        MutableLiveData<ToDo>()
     }
 
-    fun getAllTodo(){
-        scope.launch {
-            tasks.addAll(repository.getAllTodo())
-        }
-    }
-
-    fun getAllDone(){
-        scope.launch {
-            tasksDone.addAll(repository.getAllDone())
-        }
-    }
-
-    fun selectDone(id:Int, isDone:Int){
-        scope.launch {
-            repository.selectDone(id, isDone)
-        }
-    }
-
-    fun deleteTodo(toDo: ToDo){
-        scope.launch {
-            repository.deleteTodo(toDo)
-        }
-
-    }
 
 }

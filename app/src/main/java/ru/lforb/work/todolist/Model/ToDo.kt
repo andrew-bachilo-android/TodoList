@@ -1,14 +1,11 @@
 package ru.lforb.work.todolist.Model
 
-import androidx.room.Entity
-import androidx.room.PrimaryKey
-import java.io.Serializable
 
-@Entity(tableName = "tasks")
+
 data class ToDo(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val title:String,
-    val description:String,
-    val isDone:Int
-):Serializable
+    val id: String? = null,
+    val title:String? = null,
+    val description:String? = null,
+    val done:Int? = null,
+    val date: Long? = null
+)

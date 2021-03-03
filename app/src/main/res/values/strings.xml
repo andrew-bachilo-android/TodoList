@@ -5,4 +5,9 @@
     <string name="title">Заголовок</string>
     <string name="description">Описание</string>
     <string name="add">Добавить</string>
+    <string name="email_edit_text">Email</string>
+    <string name="password_edit_text">Password</string>
+    <string name="login_btn">Login</string>
+    <string name="text_label_login">Enter your email and password</string>
+    <string name="sign_up_btn">Sign Up</string>
 </resources>
