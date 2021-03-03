@@ -48,35 +48,7 @@ class SignFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
 
-        binding.btnLogin.setOnClickListener {
 
-            val email = binding.editTextEmail.text.toString()
-            val password = binding.editTextPassword.text.toString()
-            try {
-                auth.signInWithEmailAndPassword(email, password)
-                            .addOnCompleteListener(activity as MainActivity) { task ->
-                                if (task.isSuccessful) {
-                                    val user = auth.currentUser
-                                    viewModel.user = user.uid
-                                    Toast.makeText(activity, "Вы вошли", Toast.LENGTH_SHORT).show()
-                                    navController.navigate(R.id.startFragment)
-                                } else {
-                                    auth.createUserWithEmailAndPassword(email, password)
-                                            .addOnCompleteListener(activity as MainActivity) { task ->
-                                                if (task.isSuccessful) {
-                                                    val user = auth.currentUser
-                                                    Toast.makeText(activity, "Вы зарегестрированы", Toast.LENGTH_SHORT).show()
-                                                    navController.navigate(R.id.startFragment)
-                                                } else {
-                                                    Toast.makeText(activity, "Введите правильно логин и пароль", Toast.LENGTH_SHORT).show()
-                                                }
-                                            }
-                                }
-                            }
-            }catch (e:Exception){
-                Toast.makeText(activity, "Введите логин и пароль", Toast.LENGTH_SHORT).show()
-            }
-        }
 
     }
 
@@ -85,8 +57,40 @@ class SignFragment : Fragment() {
         val currentUser = auth.currentUser
         if(currentUser != null){
             binding.editTextEmail.setText(currentUser.email)
+        }
 
+        binding.btnLogin.setOnClickListener {
 
+            val email = binding.editTextEmail.text.toString()
+            val password = binding.editTextPassword.text.toString()
+            try {
+                auth.signInWithEmailAndPassword(email, password)
+                        .addOnCompleteListener(activity as MainActivity) { task ->
+                            if (task.isSuccessful) {
+                                val user = auth.currentUser
+                                viewModel.user = user.uid
+                                Toast.makeText(activity, "Вы вошли", Toast.LENGTH_SHORT).show()
+                                navController.navigate(R.id.startFragment)
+                            } else {
+                                auth.createUserWithEmailAndPassword(email, password)
+                                        .addOnCompleteListener(activity as MainActivity) { task ->
+                                            if (task.isSuccessful) {
+                                                Toast.makeText(activity, "Вы зарегестрированы", Toast.LENGTH_SHORT).show()
+                                                navController.navigate(R.id.startFragment)
+                                            } else {
+                                                if(password.length < 6){
+                                                    Toast.makeText(activity, "Пароль должен содержать не менее 6 символов", Toast.LENGTH_SHORT).show()
+                                                }else{
+                                                    Toast.makeText(activity, "Введите правильно логин и пароль", Toast.LENGTH_SHORT).show()
+                                                }
+
+                                            }
+                                        }
+                            }
+                        }
+            }catch (e:Exception){
+                Toast.makeText(activity, "Введите логин и пароль", Toast.LENGTH_SHORT).show()
+            }
         }
     }
 

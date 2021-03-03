@@ -1,6 +1,7 @@
 package ru.lforb.work.todolist.UI
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -26,6 +27,9 @@ class StartFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val tInflater = TransitionInflater.from(requireContext())
+        exitTransition = tInflater.inflateTransition(R.transition.slide_up)
+        enterTransition = tInflater.inflateTransition(R.transition.slide_down)
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
         _binding = FragmentStartBinding.inflate(inflater, container, false)
         val view = binding.root

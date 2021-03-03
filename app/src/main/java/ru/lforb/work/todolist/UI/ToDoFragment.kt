@@ -1,6 +1,7 @@
 package ru.lforb.work.todolist.UI
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -43,6 +44,9 @@ class ToDoFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val tInflater = TransitionInflater.from(requireContext())
+        exitTransition = tInflater.inflateTransition(R.transition.slide_down)
+        enterTransition = tInflater.inflateTransition(R.transition.slide_up)
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
         database = Firebase.database.reference
         _binding = FragmentToDoBinding.inflate(inflater, container, false)
@@ -54,6 +58,12 @@ class ToDoFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
 
+        binding.btnAddTask.animate().apply {
+            duration = 1200
+            rotationXBy(360f)
+        }.start()
+
+        binding.recyclerViewTodo.adapter?.notifyDataSetChanged()
         viewModel.userLive.observe(activity as MainActivity, Observer {
             if (viewModel.user.isNotEmpty()){
                 val myTasks = database.child("tasks").child(it).orderByChild("date")
@@ -90,8 +100,6 @@ class ToDoFragment : Fragment() {
             binding.recyclerViewTodo.adapter?.notifyDataSetChanged()
             viewModel.tasks
         })
-
-
         viewModel.addLive.observe(activity as MainActivity, Observer {
             binding.recyclerViewTodo.adapter?.notifyDataSetChanged()
         })
@@ -102,6 +110,7 @@ class ToDoFragment : Fragment() {
 
 
         binding.btnAddTask.setOnClickListener {
+
             navController.navigate(R.id.addTaskFragment)
         }
 
@@ -110,7 +119,6 @@ class ToDoFragment : Fragment() {
     }
 
     fun deleteTask(position: Int){
-        //viewModel.deleteTodo(viewModel.tasks[position])
         viewModel.tasks[position].id?.let { database.child("tasks").child(viewModel.user).child(it).setValue(null) }
         viewModel.tasks[position].id?.let { Log.d("555", it) }
         viewModel.tasks.removeAt(position)
@@ -118,9 +126,9 @@ class ToDoFragment : Fragment() {
     }
 
     fun addToDone(position: Int){
-        //viewModel.tasks[position].id?.let { viewModel.selectDone(it, 1) }
         viewModel.tasks[position].id?.let { database.child("tasksDone").child(viewModel.user).child(it).setValue(viewModel.tasks[position]) }
         viewModel.tasks[position].id?.let { database.child("tasks").child(viewModel.user).child(it).setValue(null) }
+
             viewModel.tasksDone.add(viewModel.tasks[position])
             viewModel.tasks.removeAt(position)
             viewModel.taskLive.postValue(viewModel.tasksDone)
@@ -128,7 +136,10 @@ class ToDoFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-
+        binding.btnAddTask.animate().apply {
+            duration = 1200
+            rotationY(720f)
+        }.start()
 
     }
 }

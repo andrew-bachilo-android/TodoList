@@ -1,6 +1,7 @@
 package ru.lforb.work.todolist.UI
 
 import android.os.Bundle
+import android.transition.TransitionInflater
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -13,6 +14,7 @@ import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 import ru.lforb.work.todolist.Model.ToDo
+import ru.lforb.work.todolist.R
 import ru.lforb.work.todolist.ViewModel.TodoViewModel
 import ru.lforb.work.todolist.databinding.FragmentAddTaskBinding
 import java.text.SimpleDateFormat
@@ -44,6 +46,9 @@ class AddTaskFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
+        val tInflater = TransitionInflater.from(requireContext())
+        exitTransition = tInflater.inflateTransition(R.transition.slide_up)
+        enterTransition = tInflater.inflateTransition(R.transition.slide_up)
         database = Firebase.database.reference
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
         _binding = FragmentAddTaskBinding.inflate(inflater, container, false)
@@ -63,7 +68,6 @@ class AddTaskFragment : Fragment() {
             val task = ToDo(id = idOne.toString(), title = title.toString(), description = description.toString(), done = 0, date = currentTime)
             database.child("tasks").child(viewModel.user).child(idOne.toString()).setValue(task)
             Log.d("555", task.id.toString())
-
             (activity as MainActivity).navController.navigateUp()
 
         }
