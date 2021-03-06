@@ -33,13 +33,6 @@ class AddTaskFragment : Fragment() {
     private val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var viewModel: TodoViewModel
-    private lateinit var database: DatabaseReference
-
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,7 +42,7 @@ class AddTaskFragment : Fragment() {
         val tInflater = TransitionInflater.from(requireContext())
         exitTransition = tInflater.inflateTransition(R.transition.slide_up)
         enterTransition = tInflater.inflateTransition(R.transition.slide_up)
-        database = Firebase.database.reference
+
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
         _binding = FragmentAddTaskBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -62,16 +55,12 @@ class AddTaskFragment : Fragment() {
         var idOne = UUID.randomUUID()
         binding.btnAdd.setOnClickListener {
             val currentTime = Calendar.getInstance().getTimeInMillis()
-            Log.d("hhh", currentTime.toString())
             val title = binding.editTitle.text
             val description = binding.editDescription.text
             val task = ToDo(id = idOne.toString(), title = title.toString(), description = description.toString(), done = 0, date = currentTime)
-            database.child("tasks").child(viewModel.user).child(idOne.toString()).setValue(task)
-            Log.d("555", task.id.toString())
+            viewModel.addTask(task)
             (activity as MainActivity).navController.navigateUp()
 
         }
     }
-
-
 }

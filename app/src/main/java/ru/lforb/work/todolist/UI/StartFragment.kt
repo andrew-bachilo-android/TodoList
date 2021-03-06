@@ -39,7 +39,6 @@ class StartFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
-        viewModel.userLive.postValue(viewModel.user)
         setUpTabs()
     }
 

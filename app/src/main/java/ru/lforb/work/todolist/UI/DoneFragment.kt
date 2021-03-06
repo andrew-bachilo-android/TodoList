@@ -27,19 +27,12 @@ class DoneFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var adapter: DoneAdapter
     private lateinit var viewModel: TodoViewModel
-    private lateinit var database: DatabaseReference
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
-        database = Firebase.database.reference
         _binding = FragmentDoneBinding.inflate(inflater, container, false)
         val view = binding.root
         return view
@@ -50,28 +43,22 @@ class DoneFragment : Fragment() {
 
         navController = findNavController()
 
-        viewModel.taskLive.observe(activity as MainActivity, Observer {
-            binding.recyclerViewDone.adapter?.notifyDataSetChanged()
-        })
+        binding.recyclerViewDone.adapter?.notifyDataSetChanged()
 
         adapter = DoneAdapter(viewModel.tasksDone, this)
         binding.recyclerViewDone.adapter = adapter
         binding.recyclerViewDone.layoutManager = LinearLayoutManager(context)
+
+        viewModel.getAllTasksDone(binding.recyclerViewDone)
+
     }
 
      fun deleteTask(position: Int){
-        //viewModel.deleteTodo(viewModel.tasksDone[position])
-         viewModel.tasksDone[position].id?.let { database.child("tasksDone").child(viewModel.user).child(it).setValue(null) }
-        viewModel.tasksDone.removeAt(position)
-         viewModel.taskLive.postValue(viewModel.tasks)
+         viewModel.deleteTaskDone(viewModel.tasksDone[position])
     }
 
     fun addToDo(position: Int){
-        //viewModel.tasksDone[position].id?.let { viewModel.selectDone(it, 0) }
-        viewModel.tasksDone[position].id?.let { database.child("tasks").child(viewModel.user).child(it).setValue(viewModel.tasksDone[position]) }
-        viewModel.tasksDone[position].id?.let { database.child("tasksDone").child(viewModel.user).child(it).setValue(null) }
-        viewModel.tasks.add(viewModel.tasksDone[position])
-        viewModel.tasksDone.removeAt(position)
-        viewModel.taskLive.postValue(viewModel.tasks)
+        viewModel.addTask(viewModel.tasksDone[position])
+        viewModel.deleteTaskDone(viewModel.tasksDone[position])
     }
 }
