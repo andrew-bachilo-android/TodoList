@@ -24,11 +24,6 @@ class ToDoFragment : Fragment() {
     private lateinit var adapter: ToDoAdapter
     private lateinit var viewModel: TodoViewModel
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -70,5 +65,5 @@ class ToDoFragment : Fragment() {
             viewModel.tasksDone.add(viewModel.tasks[position])
             viewModel.tasks.removeAt(position)
             viewModel.taskLive.postValue(viewModel.tasksDone)
-        }
+    }
 }

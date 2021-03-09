@@ -26,17 +26,11 @@ class DoneFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
     val scope = CoroutineScope(Dispatchers.IO)
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
-
         _binding = FragmentDoneBinding.inflate(inflater, container, false)
         val view = binding.root
         return view

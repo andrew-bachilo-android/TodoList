@@ -20,12 +20,6 @@ class AddTaskFragment : Fragment() {
     private lateinit var navController: NavController
     private lateinit var viewModel: TodoViewModel
 
-
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-
-    }
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -50,6 +44,4 @@ class AddTaskFragment : Fragment() {
 
         }
     }
-
-
 }

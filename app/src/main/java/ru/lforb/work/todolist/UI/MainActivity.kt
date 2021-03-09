@@ -37,15 +37,11 @@ class MainActivity : AppCompatActivity() {
         if (viewModel.tasks.isEmpty()){
             viewModel.getAllTodo()
         }
-
         if (viewModel.tasksDone.isEmpty()){
             viewModel.getAllDone()
         }
-
     }
-
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 }

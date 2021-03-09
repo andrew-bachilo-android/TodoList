@@ -48,7 +48,5 @@ class TodoViewModel(val repository: Repository) : ViewModel(){
         scope.launch {
             repository.deleteTodo(toDo)
         }
-
     }
-
 }

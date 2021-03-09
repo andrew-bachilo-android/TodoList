@@ -15,9 +15,6 @@ class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
     private  val binding get() = _binding!!
     private lateinit var navController: NavController
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +38,4 @@ class StartFragment : Fragment() {
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
-
-
 }
