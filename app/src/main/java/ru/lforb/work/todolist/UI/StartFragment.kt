@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.navigation.NavController
 import androidx.navigation.fragment.findNavController
-import ru.lforb.work.todolist.R
 import ru.lforb.work.todolist.databinding.FragmentStartBinding
 
 
