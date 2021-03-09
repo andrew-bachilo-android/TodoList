@@ -17,7 +17,6 @@ class DoneAdapter(val list:MutableList<ToDo>, val listener: DoneFragment):Recycl
         val description = itemView.findViewById<TextView>(R.id.textDescription)
         val delete = itemView.findViewById<ImageView>(R.id.btnDelete)
          val addToDo = itemView.findViewById<CheckBox>(R.id.checkboxInDone)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -32,7 +31,6 @@ class DoneAdapter(val list:MutableList<ToDo>, val listener: DoneFragment):Recycl
             val position = holder.adapterPosition
             listener.addToDo(position)
         }
-
         return holder
     }
 

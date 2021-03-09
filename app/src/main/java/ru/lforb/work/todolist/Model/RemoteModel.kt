@@ -40,9 +40,7 @@ class RemoteModel @Inject constructor() {
                 }
                 recycler.adapter?.notifyDataSetChanged()
             }
-            override fun onCancelled(databaseError: DatabaseError) {
-
-            }
+            override fun onCancelled(databaseError: DatabaseError) {}
         })
     }
 
@@ -92,11 +90,4 @@ class RemoteModel @Inject constructor() {
     fun getCurrentUser(): FirebaseUser? {
         return auth.currentUser
     }
-
-
-
-
-
-
-
 }

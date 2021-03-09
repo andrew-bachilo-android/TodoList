@@ -25,13 +25,9 @@ import java.lang.Exception
 class SignFragment : Fragment() {
     private var _binding: FragmentSignBinding? = null
     private val binding get() = _binding!!
-
     private lateinit var navController: NavController
     private lateinit var viewModel: TodoViewModel
     private lateinit var auth: FirebaseAuth
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +58,4 @@ class SignFragment : Fragment() {
             viewModel.signIn(email, password, activity as MainActivity, navController, R.id.startFragment)
         }
     }
-
-
-
 }

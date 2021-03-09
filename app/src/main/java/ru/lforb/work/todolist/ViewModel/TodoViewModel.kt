@@ -1,12 +1,9 @@
 package ru.lforb.work.todolist.ViewModel
 
-import android.util.Log
-import androidx.lifecycle.MutableLiveData
+
 import androidx.lifecycle.ViewModel
 import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.FirebaseUser
 import kotlinx.coroutines.*
 import ru.lforb.work.todolist.Model.ToDo
 import ru.lforb.work.todolist.Repository.Repository
@@ -19,7 +16,6 @@ class TodoViewModel(val repository: Repository) : ViewModel(){
     var tasks = mutableListOf<ToDo>()
 
     var user = ""
-
 
     var tasksDone = mutableListOf<ToDo>()
 
@@ -66,6 +62,4 @@ class TodoViewModel(val repository: Repository) : ViewModel(){
              repository.signIn(email, password, activity, navController, idNav)
          }
      }
-
-
 }

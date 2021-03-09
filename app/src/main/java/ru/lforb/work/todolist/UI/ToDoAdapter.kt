@@ -16,7 +16,6 @@ class ToDoAdapter(val list: MutableList<ToDo>, val listener: ToDoFragment):Recyc
         val description = itemView.findViewById<TextView>(R.id.textDescription)
         val delete = itemView.findViewById<ImageView>(R.id.btnDelete)
         val addToDone = itemView.findViewById<CheckBox>(R.id.checkboxInDone)
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -31,7 +30,6 @@ class ToDoAdapter(val list: MutableList<ToDo>, val listener: ToDoFragment):Recyc
             val position = holder.adapterPosition
             listener.addToDone(position)
         }
-
         return holder
     }
 

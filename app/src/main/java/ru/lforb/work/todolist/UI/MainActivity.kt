@@ -35,12 +35,9 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
         database = Firebase.database.reference
-
-
     }
 
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }
-
 }

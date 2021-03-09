@@ -19,9 +19,6 @@ class StartFragment : Fragment() {
     private  val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var viewModel: TodoViewModel
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +46,4 @@ class StartFragment : Fragment() {
         binding.viewPager.adapter = adapter
         binding.tabLayout.setupWithViewPager(binding.viewPager)
     }
-
-
 }

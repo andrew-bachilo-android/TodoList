@@ -52,12 +52,12 @@ class AddTaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         navController = findNavController()
-        var idOne = UUID.randomUUID()
+        var taskId = UUID.randomUUID()
         binding.btnAdd.setOnClickListener {
-            val currentTime = Calendar.getInstance().getTimeInMillis()
+            val date = Calendar.getInstance().getTimeInMillis()
             val title = binding.editTitle.text
             val description = binding.editDescription.text
-            val task = ToDo(id = idOne.toString(), title = title.toString(), description = description.toString(), done = 0, date = currentTime)
+            val task = ToDo(id = taskId.toString(), title = title.toString(), description = description.toString(), done = 0, date = date)
             viewModel.addTask(task)
             (activity as MainActivity).navController.navigateUp()
 

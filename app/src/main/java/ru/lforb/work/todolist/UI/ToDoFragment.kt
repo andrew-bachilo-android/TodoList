@@ -60,7 +60,6 @@ class ToDoFragment : Fragment() {
 
         viewModel.getAllTasks(binding.recyclerViewTodo)
 
-
         binding.btnAddTask.setOnClickListener {
             navController.navigate(R.id.addTaskFragment)
         }

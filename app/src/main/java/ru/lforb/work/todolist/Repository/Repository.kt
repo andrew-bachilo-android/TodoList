@@ -29,9 +29,4 @@ class Repository  @Inject constructor(val remoteModel: RemoteModel){
     suspend fun getUserId():String{
         return remoteModel.getUserId()
     }
-
-    suspend fun getCurrentUser(): FirebaseUser? {
-        return remoteModel.getCurrentUser()
-    }
-
 }
