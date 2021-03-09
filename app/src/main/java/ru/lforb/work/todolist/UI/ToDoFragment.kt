@@ -35,8 +35,8 @@ class ToDoFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         val tInflater = TransitionInflater.from(requireContext())
@@ -65,11 +65,11 @@ class ToDoFragment : Fragment() {
         }
     }
 
-    fun deleteTask(position: Int){
+    fun deleteTask(position: Int) {
         viewModel.deleteTask(viewModel.tasks[position])
     }
 
-    fun addToDone(position: Int){
+    fun addToDone(position: Int) {
         viewModel.addTaskDone(viewModel.tasks[position])
         viewModel.deleteTask(viewModel.tasks[position])
     }

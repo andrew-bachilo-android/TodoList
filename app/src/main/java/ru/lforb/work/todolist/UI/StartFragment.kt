@@ -16,13 +16,13 @@ import ru.lforb.work.todolist.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
-    private  val binding get() = _binding!!
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
     private lateinit var viewModel: TodoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         val tInflater = TransitionInflater.from(requireContext())
         exitTransition = tInflater.inflateTransition(R.transition.slide_up)
@@ -39,7 +39,7 @@ class StartFragment : Fragment() {
         setUpTabs()
     }
 
-    fun setUpTabs(){
+    fun setUpTabs() {
         val adapter = PagerAdapter(childFragmentManager)
         adapter.addFragment(ToDoFragment(), "To Do")
         adapter.addFragment(DoneFragment(), "Done")

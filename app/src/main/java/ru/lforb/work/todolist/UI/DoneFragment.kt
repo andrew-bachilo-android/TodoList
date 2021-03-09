@@ -20,7 +20,6 @@ import ru.lforb.work.todolist.ViewModel.TodoViewModel
 import ru.lforb.work.todolist.databinding.FragmentDoneBinding
 
 
-
 class DoneFragment : Fragment() {
     private var _binding: FragmentDoneBinding? = null
     private val binding get() = _binding!!
@@ -29,8 +28,8 @@ class DoneFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
         _binding = FragmentDoneBinding.inflate(inflater, container, false)
@@ -53,11 +52,11 @@ class DoneFragment : Fragment() {
 
     }
 
-     fun deleteTask(position: Int){
-         viewModel.deleteTaskDone(viewModel.tasksDone[position])
+    fun deleteTask(position: Int) {
+        viewModel.deleteTaskDone(viewModel.tasksDone[position])
     }
 
-    fun addToDo(position: Int){
+    fun addToDo(position: Int) {
         viewModel.addTask(viewModel.tasksDone[position])
         viewModel.deleteTaskDone(viewModel.tasksDone[position])
     }

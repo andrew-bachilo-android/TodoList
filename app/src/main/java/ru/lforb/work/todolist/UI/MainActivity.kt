@@ -16,12 +16,14 @@ import ru.lforb.work.todolist.ViewModel.TodoViewModel
 import ru.lforb.work.todolist.ViewModel.TodoViewModelFactory
 import ru.lforb.work.todolist.databinding.ActivityMainBinding
 import javax.inject.Inject
+
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
     lateinit var viewModel: TodoViewModel
-    @Inject lateinit var factory: TodoViewModelFactory
+    @Inject
+    lateinit var factory: TodoViewModelFactory
     private lateinit var database: DatabaseReference
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

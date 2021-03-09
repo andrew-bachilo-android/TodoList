@@ -30,8 +30,8 @@ class SignFragment : Fragment() {
     private lateinit var auth: FirebaseAuth
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         auth = Firebase.auth
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
@@ -48,7 +48,7 @@ class SignFragment : Fragment() {
     override fun onStart() {
         super.onStart()
         val currentUser = auth.currentUser
-        if(currentUser != null){
+        if (currentUser != null) {
             binding.editTextEmail.setText(currentUser.email)
         }
 

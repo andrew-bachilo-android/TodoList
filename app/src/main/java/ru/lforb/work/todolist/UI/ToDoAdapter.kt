@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.lforb.work.todolist.Model.ToDo
 import ru.lforb.work.todolist.R
 
-class ToDoAdapter(val list: MutableList<ToDo>, val listener: ToDoFragment):RecyclerView.Adapter<ToDoAdapter.ViewHolder>(){
-    class ViewHolder (itemView: View):RecyclerView.ViewHolder(itemView){
+class ToDoAdapter(val list: MutableList<ToDo>, val listener: ToDoFragment) : RecyclerView.Adapter<ToDoAdapter.ViewHolder>() {
+    class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val title = itemView.findViewById<TextView>(R.id.textTitle)
         val description = itemView.findViewById<TextView>(R.id.textDescription)
         val delete = itemView.findViewById<ImageView>(R.id.btnDelete)
