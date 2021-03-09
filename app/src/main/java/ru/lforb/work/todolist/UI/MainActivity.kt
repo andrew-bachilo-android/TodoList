@@ -21,7 +21,8 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var navController: NavController
     lateinit var viewModel: TodoViewModel
-    @Inject lateinit var factory: TodoViewModelFactory
+    @Inject
+    lateinit var factory: TodoViewModelFactory
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
@@ -34,13 +35,14 @@ class MainActivity : AppCompatActivity() {
 
         viewModel = ViewModelProvider(this, factory).get(TodoViewModel::class.java)
 
-        if (viewModel.tasks.isEmpty()){
+        if (viewModel.tasks.isEmpty()) {
             viewModel.getAllTodo()
         }
-        if (viewModel.tasksDone.isEmpty()){
+        if (viewModel.tasksDone.isEmpty()) {
             viewModel.getAllDone()
         }
     }
+
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp() || super.onSupportNavigateUp()
     }

@@ -13,7 +13,6 @@ import ru.lforb.work.todolist.ViewModel.TodoViewModel
 import ru.lforb.work.todolist.databinding.FragmentAddTaskBinding
 
 
-
 class AddTaskFragment : Fragment() {
     private var _binding: FragmentAddTaskBinding? = null
     private val binding get() = _binding!!
@@ -21,8 +20,8 @@ class AddTaskFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)

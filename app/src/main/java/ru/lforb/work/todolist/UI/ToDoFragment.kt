@@ -25,8 +25,8 @@ class ToDoFragment : Fragment() {
     private lateinit var viewModel: TodoViewModel
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
@@ -54,16 +54,16 @@ class ToDoFragment : Fragment() {
 
     }
 
-    fun deleteTask(position: Int){
+    fun deleteTask(position: Int) {
         viewModel.deleteTodo(viewModel.tasks[position])
         viewModel.tasks.removeAt(position)
         viewModel.taskLive.postValue(viewModel.tasksDone)
     }
 
-    fun addToDone(position: Int){
-            viewModel.selectDone(viewModel.tasks[position].id, 1)
-            viewModel.tasksDone.add(viewModel.tasks[position])
-            viewModel.tasks.removeAt(position)
-            viewModel.taskLive.postValue(viewModel.tasksDone)
+    fun addToDone(position: Int) {
+        viewModel.selectDone(viewModel.tasks[position].id, 1)
+        viewModel.tasksDone.add(viewModel.tasks[position])
+        viewModel.tasks.removeAt(position)
+        viewModel.taskLive.postValue(viewModel.tasksDone)
     }
 }

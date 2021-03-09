@@ -8,7 +8,7 @@ import kotlinx.coroutines.launch
 import ru.lforb.work.todolist.Model.ToDo
 import ru.lforb.work.todolist.Repository.Repository
 
-class TodoViewModel(val repository: Repository) : ViewModel(){
+class TodoViewModel(val repository: Repository) : ViewModel() {
     val scope = CoroutineScope(Dispatchers.IO)
 
     var tasks = mutableListOf<ToDo>()
@@ -19,32 +19,32 @@ class TodoViewModel(val repository: Repository) : ViewModel(){
         MutableLiveData<MutableList<ToDo>>()
     }
 
-    fun insertTask(newToDo: ToDo){
+    fun insertTask(newToDo: ToDo) {
         scope.launch {
             repository.insertTask(newToDo)
             tasks.add(newToDo)
         }
     }
 
-    fun getAllTodo(){
+    fun getAllTodo() {
         scope.launch {
             tasks.addAll(repository.getAllTodo())
         }
     }
 
-    fun getAllDone(){
+    fun getAllDone() {
         scope.launch {
             tasksDone.addAll(repository.getAllDone())
         }
     }
 
-    fun selectDone(id:Int, isDone:Int){
+    fun selectDone(id: Int, isDone: Int) {
         scope.launch {
             repository.selectDone(id, isDone)
         }
     }
 
-    fun deleteTodo(toDo: ToDo){
+    fun deleteTodo(toDo: ToDo) {
         scope.launch {
             repository.deleteTodo(toDo)
         }

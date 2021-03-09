@@ -12,12 +12,12 @@ import ru.lforb.work.todolist.databinding.FragmentStartBinding
 
 class StartFragment : Fragment() {
     private var _binding: FragmentStartBinding? = null
-    private  val binding get() = _binding!!
+    private val binding get() = _binding!!
     private lateinit var navController: NavController
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentStartBinding.inflate(inflater, container, false)
         val view = binding.root
@@ -30,7 +30,7 @@ class StartFragment : Fragment() {
         setUpTabs()
     }
 
-    fun setUpTabs(){
+    fun setUpTabs() {
         val adapter = PagerAdapter(childFragmentManager)
         adapter.addFragment(ToDoFragment(), "To Do")
         adapter.addFragment(DoneFragment(), "Done")

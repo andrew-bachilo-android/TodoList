@@ -6,9 +6,9 @@ import java.io.Serializable
 
 @Entity(tableName = "tasks")
 data class ToDo(
-    @PrimaryKey(autoGenerate = true)
-    val id: Int = 0,
-    val title:String,
-    val description:String,
-    val isDone:Int
-):Serializable
+        @PrimaryKey(autoGenerate = true)
+        val id: Int = 0,
+        val title: String,
+        val description: String,
+        val isDone: Int
+) : Serializable

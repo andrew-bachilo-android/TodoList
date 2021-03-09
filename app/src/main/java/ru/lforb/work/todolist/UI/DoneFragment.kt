@@ -17,7 +17,6 @@ import ru.lforb.work.todolist.ViewModel.TodoViewModel
 import ru.lforb.work.todolist.databinding.FragmentDoneBinding
 
 
-
 class DoneFragment : Fragment() {
     private var _binding: FragmentDoneBinding? = null
     private val binding get() = _binding!!
@@ -27,8 +26,8 @@ class DoneFragment : Fragment() {
     val scope = CoroutineScope(Dispatchers.IO)
 
     override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
+            inflater: LayoutInflater, container: ViewGroup?,
+            savedInstanceState: Bundle?
     ): View? {
         viewModel = ViewModelProvider(activity as MainActivity).get(TodoViewModel::class.java)
         _binding = FragmentDoneBinding.inflate(inflater, container, false)
@@ -50,13 +49,13 @@ class DoneFragment : Fragment() {
         binding.recyclerViewDone.layoutManager = LinearLayoutManager(context)
     }
 
-     fun deleteTask(position: Int){
+    fun deleteTask(position: Int) {
         viewModel.deleteTodo(viewModel.tasksDone[position])
         viewModel.tasksDone.removeAt(position)
-         viewModel.taskLive.postValue(viewModel.tasks)
+        viewModel.taskLive.postValue(viewModel.tasks)
     }
 
-    fun addToDo(position: Int){
+    fun addToDo(position: Int) {
         viewModel.selectDone(viewModel.tasksDone[position].id, 0)
         viewModel.tasks.add(viewModel.tasksDone[position])
         viewModel.tasksDone.removeAt(position)
